@@ -1,0 +1,15 @@
+@startuml
+actor endpoints
+control gateway
+endpoints -> gateway : REST API REQUEST
+gateway -> gateway : Validate the REQUEST
+gateway -> ngix : REST API REQUEST
+ngix -> server : REST API
+server -> Application : REST API REQUETS
+activate Application 
+Application -> Database : Query
+Application --> ngix : Response
+deactivate Application
+
+
+@enduml
